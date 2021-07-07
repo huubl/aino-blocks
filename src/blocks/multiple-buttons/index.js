@@ -28,8 +28,8 @@ const {
 } = metadata;
 
 const settings = {
-	title: __('Multiple Buttons', 'ainoblocks'),
-	description: __('A row of buttons with customization options.', 'ainoblocks'),
+	title: __('Buttons', 'ainoblocks'),
+	description: __('A row of buttons.', 'ainoblocks'),
 	category: typeof registerBlockCollection === 'function' ? 'design' : 'ainoblocks',
 	icon,
 	keywords: [
@@ -42,6 +42,28 @@ const settings = {
 	attributes,
 	supports: {
 		align: ['left', 'right', 'center'],
+	},
+	example: {
+		innerBlocks: [
+		{
+			name: 'ainoblocks/button',
+			attributes: {
+				className: 'is-style-primary',
+				label: __( 'Sign up', 'ainoblocks' ),
+				borderRadius: 'radius-circular',
+				size: 'size__l',
+			},
+		},
+		{
+			name: 'ainoblocks/button',
+			attributes: {
+				className: 'is-style-outline',
+				label: __( 'Learn more', 'ainoblocks' ),
+				borderRadius: 'radius-circular',
+				size: 'size__l',
+			},
+		},
+		],
 	},
 	edit,
 	save,

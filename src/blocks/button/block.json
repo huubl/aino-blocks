@@ -1,5 +1,6 @@
 {
 	"name": "button",
+	"apiVersion": 2,
 	"attributes": {
 		"url": {
 			"type": "string",
@@ -35,19 +36,14 @@
 		},
 		"size": {
 			"type": "string",
-			"default": "size-m"
-		},
-		"fontSize": {
-			"type": "string",
-			"default": "fontsize-s"
+			"default": "size__m"
 		},
 		"borderRadius": {
-			"type": "string",
-			"default": "radius-square"
+			"type": "number",
+			"default": 0
 		},
 		"borderWidth": {
-			"type": "string",
-			"default": "border-width-thin"
+			"type": "number"
 		},
 		"uppercase": {
 			"type": "boolean",
@@ -59,10 +55,16 @@
 		"textColor": {
 			"type": "string"
 		},
-		"customBackgroundColor": {
+		"linkBackgroundColor": {
 			"type": "string"
 		},
-		"customTextColor": {
+		"linkTextColor": {
+			"type": "string"
+		},
+		"gradient": {
+			"type": "string"
+		},
+		"label": {
 			"type": "string"
 		}
 	}

@@ -3,6 +3,7 @@ import "./i18n.js";
 /**
  * WordPress dependencies
  */
+registerBlockType
 const { registerBlockType } = wp.blocks;
 
 // Category slug and title
@@ -15,6 +16,7 @@ const category = {
 import './utils/block-category';
 
 // Register extensions
+import './extensions/border-radius';
 import './extensions/spacing';
 
 // Register blocks
@@ -25,12 +27,13 @@ import * as card from './blocks/card';
 import * as badge from './blocks/badge';
 import * as author from './blocks/author';
 import * as testimonial from './blocks/testimonial';
-import * as featuredContent from './blocks/featured-content';
 import * as button from './blocks/button';
 import * as multipleButtons from './blocks/multiple-buttons';
-import * as imageText from './blocks/image-text';
+import * as arrowButton from './blocks/arrow-button';
+import * as sticker from './blocks/sticker';
+import * as divider from './blocks/divider';
 
-export function registerBlocks() {
+export function registerAinoblocksBlocks() {
 	[
 		gridItem,
 		gridContainer,
@@ -38,11 +41,12 @@ export function registerBlocks() {
 		badge,
 		author,
 		testimonial,
-		featuredContent,
 		button,
 		multipleButtons,
+		arrowButton,
 		hero,
-		imageText,
+		sticker,
+		divider,
 	].forEach(block => {
 		if (!block) {
 			return;
@@ -51,10 +55,11 @@ export function registerBlocks() {
 		const { name, icon, settings } = block;
 
 		registerBlockType(`ainoblocks/${name}`, {
+			apiVersion: 2,
 			category: category.slug,
 			icon: { src: icon },
 			...settings,
 		});
 	});
 }
-registerBlocks();
+registerAinoblocksBlocks();

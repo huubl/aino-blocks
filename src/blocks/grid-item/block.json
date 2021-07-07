@@ -1,13 +1,30 @@
 {
 	"name": "grid-item",
+	"apiVersion": 2,
 	"attributes": {
-		"gridColumnStart": {
+		"gridColumnStartDesktop": {
 			"type": "number",
 			"default": "1"
 		},
-		"gridColumnEnd": {
+		"gridColumnEndDesktop": {
 			"type": "number",
-			"default": "5"
+			"default": "7"
+		},
+		"gridColumnStartTablet": {
+			"type": "number",
+			"default": "1"
+		},
+		"gridColumnEndTablet": {
+			"type": "number",
+			"default": "7"
+		},
+		"gridColumnStartMobile": {
+			"type": "number",
+			"default": "1"
+		},
+		"gridColumnEndMobile": {
+			"type": "number",
+			"default": "7"
 		},
 		"alignItem": {
 			"type": "string",
@@ -18,8 +35,7 @@
 			"default": "start"
 		},
 		"stackOrder": {
-			"type": "number",
-			"default": "1"
+			"type": "number"
 		},
 		"stacking": {
 			"type": "boolean",
@@ -36,6 +52,30 @@
 		"overlapRight": {
 			"type": "boolean",
 			"default": false
+		},
+		"marginTopDesktop": {
+			"type": "number"
+		},
+		"marginBottomDesktop": {
+			"type": "number"
+		},
+		"marginTopTablet": {
+			"type": "number"
+		},
+		"marginBottomTablet": {
+			"type": "number"
+		},
+		"marginTopMobile": {
+			"type": "number"
+		},
+		"marginBottomMobile": {
+			"type": "number"
+		},
+		"backgroundColor": {
+			"type": "string"
+		},
+		"borderColor": {
+			"type": "string"
 		}
 	}
 }

@@ -1,10 +1,13 @@
 {
 	"name": "badge",
+	"apiVersion": 2,
 	"attributes": {
 		"content": {
+			"type": "string"
+		},
+		"size": {
 			"type": "string",
-			"source": "html",
-			"selector": "span"
+			"default": "size__m"
 		},
 		"placeholder": {
 			"type": "string"
@@ -15,6 +18,9 @@
 		"textColor": {
 			"type": "string"
 		},
+		"borderColor": {
+			"type": "string"
+		},
 		"alignment": {
 			"type": "string"
 		},
@@ -23,6 +29,10 @@
 		},
 		"gradient": {
 			"type": "string"
+		},
+		"icon": {
+			"type": "boolean",
+			"default": false
 		}
 	}
 }

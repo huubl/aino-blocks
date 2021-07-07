@@ -29,7 +29,7 @@ const {
 
 const settings = {
 	title: __('Button', 'ainoblocks'),
-	description: __('A single button within a multiple buttons block.', 'ainoblocks'),
+	description: __('A single button within a Buttons block.', 'ainoblocks'),
 	category: typeof registerBlockCollection === 'function' ? 'design' : 'ainoblocks',
 	parent: ['ainoblocks/multiple-buttons'],
 	icon,
@@ -40,25 +40,37 @@ const settings = {
 		__('buttons', 'ainoblocks'),
 		__('aino blocks', 'ainoblocks'),
 	],
-	attributes,
-	styles: [{
+	styles: [
+		{
 			name: 'primary',
-			label: _x('Fill', 'ainoblocks'),
-			isDefault: true
+			/* translators: block style */
+			label: __( 'Fill', 'ainoblocks' ),
+			isDefault: true,
 		},
 		{
 			name: 'outline',
-			label: __('Outline', 'ainoblocks')
+			/* translators: block style */
+			label: __( 'Outline' ),
 		},
-		{
-			name: '3doutline',
-			label: __('3D Outline', 'ainoblocks')
-		},
-		{
-			name: 'ghost',
-			label: __('Ghost', 'ainoblocks')
+		{ 
+			name: 'naked',
+			/* translators: block style */
+			label: __( 'Naked' ),
 		},
 	],
+	supports: {
+		"anchor": true
+	},
+	example: {
+			name: 'ainoblocks/button',
+			attributes: {
+				className: 'is-style-primary',
+				label: __( 'Call to Action', 'ainoblocks' ),
+				borderRadius: 'radius-circular',
+				size: 'size__l',
+			},
+	},
+	attributes,
 	edit,
 	save,
 };

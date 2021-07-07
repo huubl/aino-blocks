@@ -1,15 +1,15 @@
-# Aino Blocks: A block collection for page building
+# Aino Blocks: A WordPress blocks collection  
 	
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/elmastudio/aino-blocks) [![License](https://img.shields.io/badge/license-GPL--2.0%2B-red.svg)](https://github.com/elmastudio/aino-blocks/blob/master/LICENSE) ![Twitter URL](https://img.shields.io/twitter/url?label=Tweet%20about%20it&style=social&url=https%3A%2F%2Fwpaino.com%2F)
 
 [Aino](https://wpaino.com/) is a WordPress editor block collection for page building. It's recommended to use Aino blocks in combination with the free [Aino theme](https://wordpress.org/themes/aino/).
 
-[![Aino Blocks - A collection of Gutenberg blocks for page building](https://user-images.githubusercontent.com/17613630/85094515-113d3b80-b243-11ea-931e-27d954fe0fa7.png)](https://wpaino.com/)
+[![Aino Blocks - A collection of Gutenberg blocks for page building](https://user-images.githubusercontent.com/17613630/112424789-e9fb3800-8d99-11eb-8ab1-2f2b818d00b2.jpeg)](https://wpaino.com/)
 
 __Contributors:__ elmastudio  
 __Tags:__ page builder, Gutenberg blocks, WordPress blocks, gutenberg, blocks   
-__Requires at least:__ 5.4   
-__Tested up to:__ WordPress 5.4.2  
+__Requires at least:__ 5.5   
+__Tested up to:__ WordPress 5.8.0  
 __License:__ GPLv2 or later  
 __License URI:__ https://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -26,11 +26,57 @@ __License URI:__ https://www.gnu.org/licenses/gpl-2.0.html
 
 1. We recommend to install the [Gutenberg](https://wordpress.org/plugins/gutenberg/) plugin.
 2. Install and activate the Aino theme from the [WordPress theme directory](https://wordpress.org/themes/aino/).
-3. Download and install the Aino blocks plugin [via Github](https://github.com/elmastudio/aino-blocks/archive/master.zip).
+3. Download and install the Aino blocks plugin [via WordPress.org](https://wordpress.org/plugins/aino-blocks/).
 4. Start to have fun building your website with blocks.
 
 ### Changelog  
 =======
+
+### 1.5.0  
+**Bugfix:** Freestyle Block Patterns.  
+**Bugfix:** Core Image block border radius for images with link.  
+**Enhance:** Border radius setting for Code, Preformatted, Group and Card blocks.  
+**Enhance:** Update to API version 2.  
+**Enhance:** Button Block Background Link Color.  
+**Enhance:** Grid Block Small gap styles.  
+
+
+### 1.4.0  
+**New:** Core Image block border radius settings.  
+
+### 1.3.0  
+**New:** 'Freestyle' block patterns set.  
+**New:** Grid full width toolbar button.  
+**New:** Grid item background colour setting.  
+**Enhance:** Card block border settings.  
+**Enhance:** Add spacing setting to Core Separator block.  
+
+### 1.2.1  
+**New:** First 'Arty Portfolio' block pattern.  
+**Bugfix:** Sticker block URL input.  
+**Bugfix:** Arrow button block URL input.  
+  
+  
+### 1.2.0  
+**New:** Sticker block.  
+**New:** Divider block.  
+**Enhance:** Block editor icons.  
+**Enhance:** Card block paddings.  
+**Enhance:** Badge block.  
+**Enhance:** Arrow Button block.  
+**Enhance:** Grid and Grid item blocks.  
+
+### 1.1.2  
+**Bugfix:** Fixed typo in plugin header information.  
+
+### 1.1.1  
+**Bugfix:** Added unique function names, namespaces, defines.  
+
+### 1.1.0  
+**New:** Add first block pattern.  
+**New:** Arrow Button Block.  
+**Enhance:** Grid block.  
+**Update:** Delete Featured Content block, since it can be replaced by Grid block.  
 
 ### 1.0.1.
 **Enhance:** Card block spacing setting.  

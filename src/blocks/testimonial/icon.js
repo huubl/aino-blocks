@@ -3,6 +3,7 @@
  */
 const { Path, SVG } = wp.components;
 
-export default <SVG className="components-ainoblocks-svg" aria-hidden role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-<path fill="#7946f3" d="M16 1v3h3v7h3v-2.997h2v4.997h-2v3h-3v4h-4v4h-2v-4h-3v4h-2v-4h-3v-7h-5v-2h5v-2h-5v-3h5v-2h2v-3h9zM16 15h-5v2h5v-2zM9 6h-2v2h2v-2z"></path>
+export default 
+<SVG className="components-ainoblocks-svg" aria-hidden role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+<path d="M18 0c3.314 0 6 2.686 6 6v12c0 3.314-2.686 6-6 6-3.281 0-5.946-2.633-5.999-5.901l-0.001-0.096-0.001 0.096c-0.053 3.268-2.719 5.901-5.999 5.901s-5.946-2.633-5.999-5.901l-0.001-0.099v-12c0-3.314 2.686-6 6-6 3.281 0 5.946 2.633 5.999 5.901l0.001 0.099c0-3.314 2.686-6 6-6z"></path>
 </SVG>

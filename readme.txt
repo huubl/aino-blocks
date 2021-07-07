@@ -1,30 +1,31 @@
 === Aino Blocks ===
-Author URI       : https: //www.elmastudio.de/en
-Plugin URI       : https: //wpaino.com
-Contributors     : elmastudio
-Tags             : page builder, Gutenberg blocks, WordPress blocks, gutenberg, blocks
-Requires at least: 5.4
-Tested up to     : 5.4.2
-Stable tag       : 1.0.1
-License          : GPLv2 or later
-License URI      : https: //www.gnu.org/licenses/gpl-2.0.html
+Author URI: https://www.elmastudio.de/en
+Plugin URI: https://wpaino.com
+Contributors: elmastudio
+Tags: block, WordPress blocks, gutenberg, blocks, block patterns
+Requires at least: 5.6
+Tested up to: 5.8.0
+Stable tag: 1.5.0
+License: GPLv2 or later
+License URI: https: //www.gnu.org/licenses/gpl-2.0.html
 
-A WordPress block collection for page building.
+A block collection to build creative WordPress websites.
 
 == Description ==
 
-The Aino blocks plugin brings you a collection of page building blocks for the Gutenberg editor. With Aino blocks and the free <a href="https://wordpress.org/themes/aino/" target="_blank" rel="">Aino theme</a> you can build creative, individual page layouts in the WordPress editor. 
+The Aino blocks plugin brings you a collection of blocks and block patterns for the WordPress block editor. With Aino blocks and the free <a href="https://wordpress.org/themes/aino/" target="_blank" rel="">Aino theme</a> you can build creative, individual page layouts with ease.
 
 ## Currently available blocks
-* Grid container block
-* Hero block
-* Featured Content block
-* Card block
-* Badge block
+* Arrow button block
 * Author block
+* Badge block
+* Buttons block
+* Card block
+* Divider block
+* Grid block
+* Hero block
+* Sticker block
 * Testimonial block
-* Multiple Buttons block
-* Image & Text block
 
 == Installation ==
 
@@ -45,12 +46,63 @@ Any block-ready WordPress theme will work with Aino blocks. Since we created the
 After the Aino blocks plugin is installed, you will see the Aino blocks collection in your Blocks library on any page and post. You can now choose a block and insert it into your editor.
 
 = Does Aino come with Block patterns? =
-Yes, you can use block patterns if you have the latest Gutenberg plugin version installed. You can see the first Aino blocks pattern inside the pattern library. We will create more free block patterns shortly.
+Yes, you can find the first Aino blocks patterns inside the pattern library. We will create more block patterns shortly.
+
+== Resources ==
+* Block Pattern Images by Slitshire.com, CC0 Creative Commons License, https://www.splitshire.com/
 
 == Changelog ==
 
+= 1.5.0 =
+Bugfix: Freestyle Block Patterns.
+Bugfix: Core Image block border radius for images with link.
+Enhance: Border radius setting for Code, Preformatted, Group and Card blocks.
+Enhance: Update to API version 2.
+Enhance: Button Block Background Link Color.
+Enhance: Grid Block Small gap styles.
+
+
+= 1.4.1 =
+Bugfix: Core Image block border radius settings, when border radius is not set.
+
+= 1.4.0 =
+New: Core Image block border radius settings.
+
+= 1.3.0 =
+New: 'Freestyle' block patterns set.
+New: Grid full width toolbar button.
+New: Grid item background colour setting.
+Enhance: Card block border settings.
+Enhance: Add spacing setting to Core Separator block.
+
+= 1.2.1 =
+New: First 'Freestyle' block pattern.
+Bugfix: Sticker block URL input.
+Bugfix: Arror button block URL input.
+
+= 1.2.0 =
+New: Sticker block.
+New: Divider block.
+Enhance: Block editor icons.
+Enhance: Card block paddings.
+Enhance: Badge block.
+Enhance: Arrow Button block.
+Enhance: Grid and Grid item blocks.
+
+= 1.1.2 =
+Bugfix: Fixed typo in plugin header information.
+
+= 1.1.1 =
+Bugfix: Added unique function names, namespaces, defines.
+
 = 1.1.0 =
 New: Add first block pattern.
+New: Arrow Button block.
+Enhance: Grid block.
+Enhance: Add block preview examples.
+Update: Delete Featured Content and Image + Text blocks, since they can be replaced with the Grid block.
+Bugfix: Card block padding.
+Bugfix: Aino Buttons block settings.
 
 = 1.0.1 =
 Enhance: Card block spacing setting.

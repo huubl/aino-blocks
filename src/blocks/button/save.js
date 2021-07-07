@@ -9,56 +9,68 @@ import classnames from 'classnames';
 const {
 	RichText,
 	getColorClassName,
+	useBlockProps,
 } = wp.blockEditor;
 
-export default function save({
-	attributes
-}) {
+export default function save( { attributes } ) {
+
 	const {
 		url,
-		text,
-		title,
+		label,
 		backgroundColor,
 		textColor,
-		customBackgroundColor,
-		customTextColor,
+		linkBackgroundColor,
+		linkTextColor,
 		linkTarget,
 		rel,
 		size,
-		fontSize,
 		borderRadius,
+		borderWidth,
 		uppercase,
 	} = attributes;
 
 	const textClass = getColorClassName('color', textColor);
 	const backgroundClass = getColorClassName('background-color', backgroundColor);
 
-	const buttonClasses = classnames('wp-block-ainoblocks-button__link', size, fontSize, borderRadius, {
-		'has-text-color': textColor || customTextColor,
-		[textClass]: textClass,
-		'has-background': backgroundColor || customBackgroundColor,
-		[backgroundClass]: backgroundClass,
+	const buttonClasses = classnames('wp-block-ainoblocks-button__link', size, borderRadius, {
+		'has-custom-background': backgroundColor,
+		'has-custom-text-color': textColor,
+		'has-link-bg': linkBackgroundColor,
 		'is-uppercase': uppercase,
+		'no-border-radius': borderRadius === 0,
+		'no-border': borderWidth === 0,
 	});
 
-	const buttonStyle = {
-		backgroundColor: backgroundClass ? undefined : customBackgroundColor,
-		boxShadow: 'inset 0 0 0 1px ' + customBackgroundColor,
-		color: textClass ? undefined : customTextColor,
+	const styleButton = {
+		backgroundColor: backgroundColor,
+		color: textColor,
+		borderRadius: borderRadius ? borderRadius + 'px' : undefined,
+		borderWidth: borderWidth ? borderWidth + 'px' : undefined,
 	};
 
+	const styleBg = {
+		backgroundColor:linkBackgroundColor,
+		borderRadius: borderRadius ? borderRadius + 'px' : undefined,
+	};
+
+	const wrapperClasses = classnames(classnames, {});
+
+	const blockProps = useBlockProps.save( {
+		className: wrapperClasses,
+		style: styleBg,
+	} );
+
 	return (
-		<div>
-			<a
-				className={buttonClasses}
-				href={url}
-				title={title}
-				style={buttonStyle}
-				target={linkTarget}
-				rel={rel}
-			>
-			<RichText.Content value={text} />
-			</a>
+		<div { ...blockProps }>
+			<RichText.Content
+				tagName="a"
+				className={ buttonClasses }
+				href={ url }
+				style={ styleButton}
+				value={ label }
+				target={ linkTarget }
+				rel={ rel }
+			/>
 		</div>
 	);
 }

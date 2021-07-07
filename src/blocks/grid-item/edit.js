@@ -5,53 +5,47 @@ import classnames from 'classnames';
 import get from 'lodash/get';
 
 /**
+ * Internal dependencies
+ */
+import Inspector from './inspector';
+
+/**
  * WordPress dependencies
  */
-const { __, _x } = wp.i18n;
+const { __ } = wp.i18n;
 const { addFilter } = wp.hooks;
-const {
-	Component,
-	Fragment,
-} = wp.element;
+const {Component,Fragment,} = wp.element;
 const {
 	compose,
 	createHigherOrderComponent,
 } = wp.compose;
 const {
 	InspectorControls,
+	PanelColorSettings,
 	InnerBlocks,
+	useBlockProps,
 } = wp.blockEditor;
 const {
 	PanelBody,
 	RangeControl,
 	SelectControl,
 	ToggleControl,
+	TabPanel,
 } = wp.components;
-const {
-	withDispatch,
-	withSelect,
-} = wp.data;
 
 /**
  * Block edit function
  */
-class GridItemEdit extends Component {
-
-	constructor() {
-		super(...arguments);
-	}
-
-	render() {
-		const {
-			attributes,
-			setAttributes,
-			className,
-			hasChildBlocks,
-		} = this.props;
+export default function GridItemEdit( { hasChildBlocks, attributes, setAttributes, className, isSelected, onSelect } ) {
 
 		const {
-			gridColumnStart,
-			gridColumnEnd,
+			backgroundColor,
+			gridColumnStartDesktop,
+			gridColumnEndDesktop,
+			gridColumnStartTablet,
+			gridColumnEndTablet,
+			gridColumnStartMobile,
+			gridColumnEndMobile,
 			alignItem,
 			justifyItem,
 			stacking,
@@ -59,6 +53,12 @@ class GridItemEdit extends Component {
 			gutter,
 			overlapLeft,
 			overlapRight,
+			marginTopDesktop,
+			marginBottomDesktop,
+			marginTopTablet,
+			marginBottomTablet,
+			marginTopMobile,
+			marginBottomMobile,
 		} = attributes;
 
 		const alignItemOptions = [{
@@ -97,36 +97,262 @@ class GridItemEdit extends Component {
 			}
 		];
 
+		const gridColumnStartDesktopTooltipContent = gridColumnStartDesktop => `line ${gridColumnStartDesktop}`
+		const gridColumnEndDesktopTooltipContent = gridColumnEndDesktop => `line ${gridColumnEndDesktop}`
+		const gridColumnStartTabletTooltipContent = gridColumnStartTablet => `line ${gridColumnStartTablet}`
+		const gridColumnEndTabletTooltipContent = gridColumnEndTablet => `line ${gridColumnEndTablet}`
+		const gridColumnStartMobileTooltipContent = gridColumnStartMobile => `line ${gridColumnStartMobile}`
+		const gridColumnEndMobileTooltipContent = gridColumnEndMobile => `line ${gridColumnEndMobile}`
+
 		const classNames = classnames(className, {
 		});
 
+		const styles = {
+			backgroundColor: backgroundColor,
+		};
+
+		const blockProps = useBlockProps( {
+			className: classNames,
+			style: styles,
+		} );
+	
 		return (
 			<Fragment>
 				<InspectorControls>
-					<PanelBody title={__('Grid Item Settings', 'ainoblocks')}>
-						<RangeControl
-						label={__('Grid Column Start', 'ainoblocks')}
-						value={gridColumnStart}
-						onChange={(gridColumnStart) => setAttributes({ gridColumnStart })}
-						min={1}
-						max={13}
-						allowReset={true}
-						/>
-						<RangeControl
-							label={__('Grid Column End', 'ainoblocks')}
-							value={gridColumnEnd}
-							onChange={(gridColumnEnd) => setAttributes({ gridColumnEnd })}
-							min={1}
-							max={13}
-							allowReset={true}
-						/>
+					<PanelBody title={__('Positioning', 'ainoblocks')}>
+					<p><em>{ __( 'Use Preview for Desktop, Tablet and Mobile view.', 'ainoblocks' ) }</em></p>
+						<TabPanel className="aino-device-panel"
+							activeClass="is-active"
+							initialTabName="desktop"
+							onSelect={ onSelect }
+							tabs={ [
+								{
+									name: 'desktop',
+									title: 'Desktop',
+									className: 'device-d',
+								},
+								{
+									name: 'tablet',
+									title: 'Tablet',
+									className: 'device-t',
+								},
+								{
+									name: 'mobile',
+									title: 'Mobile',
+									className: 'device-m',
+								},
+							] }>
+							{
+								( tab ) => {
+									switch ( tab.name ) {
+										case 'desktop':
+											return (
+												<Fragment>
+													<RangeControl
+														label={__('Grid Column Start', 'ainoblocks')}
+														value={gridColumnStartDesktop}
+														onChange={(gridColumnStartDesktop) => setAttributes({ gridColumnStartDesktop })}
+														min={1}
+														max={13}
+														allowReset={true}
+														renderTooltipContent={ gridColumnStartDesktopTooltipContent }
+													/>
+													<RangeControl
+														label={__('Grid Column End', 'ainoblocks')}
+														value={gridColumnEndDesktop}
+														onChange={(gridColumnEndDesktop) => setAttributes({ gridColumnEndDesktop })}
+														min={1}
+														max={13}
+														allowReset={true}
+														renderTooltipContent={gridColumnEndDesktopTooltipContent }
+													/>
+												</Fragment>
+											);
+										case 'tablet':
+											return [
+												<Fragment>
+													<RangeControl
+													label={__('Grid Column Start', 'ainoblocks')}
+													value={gridColumnStartTablet}
+													onChange={(gridColumnStartTablet) => setAttributes({ gridColumnStartTablet })}
+													min={1}
+													max={13}
+													allowReset={true}
+													renderTooltipContent={ gridColumnStartTabletTooltipContent }
+													/>
+													<RangeControl
+														label={__('Grid Column End', 'ainoblocks')}
+														value={gridColumnEndTablet}
+														onChange={(gridColumnEndTablet) => setAttributes({ gridColumnEndTablet })}
+														min={1}
+														max={13}
+														allowReset={true}
+														renderTooltipContent={ gridColumnEndTabletTooltipContent }
+													/>
+												</Fragment>
+											];
+										
+										case 'mobile':
+											return [
+												<Fragment>
+													<RangeControl
+													label={__('Grid Column Start', 'ainoblocks')}
+													value={gridColumnStartMobile}
+													onChange={(gridColumnStartMobile) => setAttributes({ gridColumnStartMobile })}
+													min={1}
+													max={13}
+													allowReset={true}
+													renderTooltipContent={ gridColumnStartMobileTooltipContent }
+													/>
+													<RangeControl
+														label={__('Grid Column End', 'ainoblocks')}
+														value={gridColumnEndMobile}
+														onChange={(gridColumnEndMobile) => setAttributes({ gridColumnEndMobile })}
+														min={1}
+														max={13}
+														allowReset={true}
+														renderTooltipContent={ gridColumnEndMobileTooltipContent }
+													/>
+												</Fragment>
+											];
+									}
+								}
+							}
+						</TabPanel>
+					</PanelBody>
+					<PanelBody
+						title={__('Margins', 'ainoblocks')}
+						initialOpen={false}
+					>
+						<TabPanel className="aino-device-panel"
+							activeClass="is-active"
+							initialTabName="desktop"
+							onSelect={ onSelect }
+							tabs={ [
+								{
+									name: 'desktop',
+									title: 'Desktop',
+									className: 'device-d',
+								},
+								{
+									name: 'tablet',
+									title: 'Tablet',
+									className: 'device-t',
+								},
+								{
+									name: 'mobile',
+									title: 'Mobile',
+									className: 'device-m',
+								},
+							] }>
+							{
+								( tab ) => {
+									switch ( tab.name ) {
+										case 'desktop':
+											return (
+												<Fragment>
+													<RangeControl
+														label={__('Margin Top', 'ainoblocks')}
+														value={marginTopDesktop}
+														onChange={(marginTopDesktop) => setAttributes({ marginTopDesktop })}
+														min={-18}
+														max={18}
+														allowReset={true}
+														resetFallbackValue={0}
+													/>
+													<RangeControl
+														label={__('Margin Bottom', 'ainoblocks')}
+														value={marginBottomDesktop}
+														onChange={(marginBottomDesktop) => setAttributes({ marginBottomDesktop })}
+														min={-18}
+														max={18}
+														allowReset={true}
+														resetFallbackValue={0}
+													/>
+												</Fragment>
+											);
+										case 'tablet':
+											return [
+												<Fragment>
+													<RangeControl
+													label={__('Margin Top', 'ainoblocks')}
+													value={marginTopTablet}
+													onChange={(marginTopTablet) => setAttributes({ marginTopTablet })}
+													min={-18}
+													max={18}
+													allowReset={true}
+													resetFallbackValue={0}
+													/>
+													<RangeControl
+														label={__('Margin Bottom', 'ainoblocks')}
+														value={marginBottomTablet}
+														onChange={(marginBottomTablet) => setAttributes({ marginBottomTablet })}
+														min={-18}
+														max={18}
+														allowReset={true}
+														resetFallbackValue={0}
+													/>
+												</Fragment>
+											];
+										
+										case 'mobile':
+											return [
+												<Fragment>
+													<RangeControl
+													label={__('Margin Top', 'ainoblocks')}
+													value={marginTopMobile}
+													onChange={(marginTopMobile) => setAttributes({ marginTopMobile })}
+													min={-18}
+													max={18}
+													allowReset={true}
+													resetFallbackValue={0}
+													/>
+													<RangeControl
+														label={__('Margin Bottom', 'ainoblocks')}
+														value={marginBottomMobile}
+														onChange={(marginBottomMobile) => setAttributes({ marginBottomMobile })}
+														min={-18}
+														max={18}
+														allowReset={true}
+														resetFallbackValue={0}
+													/>
+												</Fragment>
+											];
+									}
+								}
+							}
+						</TabPanel>
+					</PanelBody>
+					<PanelColorSettings
+						title={__('Color Settings', 'ainoblocks')}
+						initialOpen={false}
+						colorSettings={[
+							{
+								value: backgroundColor,
+								onChange: backgroundColor => {
+									setAttributes({ backgroundColor });
+								},
+								label: __('Background Color', 'ainoblocks'),
+							},
+						]}
+					>
+					</PanelColorSettings>
+					<PanelBody
+						title={__('Gutter', 'ainoblocks')}
+						initialOpen={false}
+					>
 						<ToggleControl
 							label={__('Add end gutters', 'ainoblocks')}
 							checked={!!gutter}
 							onChange={() => setAttributes({ gutter: !gutter })}
 							help={!!gutter ? __('Toogle off to remove the spacing left and right of the grid item.', 'ainoblocks') : __('Toggle on for space left and right of the grid item.', 'ainoblocks')}
 						/>
-						<ToggleControl
+					</PanelBody>
+					<PanelBody
+						title={__('Overlapping', 'ainoblocks')}
+						initialOpen={false}
+					>
+					<ToggleControl
 							label={__('Overlap to left', 'ainoblocks')}
 							checked={!!overlapLeft}
 							onChange={() => setAttributes({ overlapLeft: !overlapLeft })}
@@ -139,7 +365,27 @@ class GridItemEdit extends Component {
 							help={!!overlapRight ? __('Toogle off to position grid item within grid container.', 'ainoblocks') : __('Toggle on to overlap grid item to right screen edge.', 'ainoblocks')}
 						/>
 					</PanelBody>
-
+					<PanelBody
+						title={__('Stacking', 'ainoblocks')}
+						initialOpen={false}
+					>
+						<ToggleControl
+							label={__('Stacking', 'ainoblocks')}
+							checked={!!stacking}
+							onChange={() => setAttributes({ stacking: !stacking })}
+							help={!!stacking ? __('Toogle off to show grid items below the previous grid item.', 'ainoblocks') : __('Toggle on to allow stacking of grid item.', 'ainoblocks')}
+						/>
+						{ stacking === true && (
+						<RangeControl
+							label={__('Stack Order', 'ainoblocks')}
+							help={__('An item with greater stack order is always in front of an item with a lower stack order.', 'ainoblocks')}
+							value={stackOrder}
+							onChange={(stackOrder) => setAttributes({ stackOrder })}
+							min={1}
+							max={20}
+						/>
+						) }
+					</PanelBody>
 					<PanelBody
 						title={__('Aligment', 'ainoblocks')}
 						initialOpen={false}
@@ -159,46 +405,16 @@ class GridItemEdit extends Component {
 							onChange={justifyItem => setAttributes({ justifyItem })}
 						/>
 					</PanelBody>
-
-					<PanelBody
-						title={__('Stacking', 'ainoblocks')}
-						initialOpen={false}
-					>
-						<ToggleControl
-							label={__('Stacking', 'ainoblocks')}
-							checked={!!stacking}
-							onChange={() => setAttributes({ stacking: !stacking })}
-							help={!!stacking ? __('Toogle off to show grid items below the previous grid item.', 'ainoblocks') : __('Toggle on to allow stacking of grid item.', 'ainoblocks')}
-						/>
-						<RangeControl
-							label={__('Stack Order', 'ainoblocks')}
-							help={__('An item with greater stack order is always in front of an item with a lower stack order.', 'ainoblocks')}
-							value={stackOrder}
-							onChange={(stackOrder) => setAttributes({ stackOrder })}
-							initialPosition={1}
-							min={1}
-							max={10}
-						/>
-					</PanelBody>
 				</InspectorControls>
 
-				<div className={classNames} >
+				<div { ...blockProps }>
 					<InnerBlocks
 						templateLock={ false }
-						renderAppender={
-							hasChildBlocks
-								? undefined
-								: () => <InnerBlocks.ButtonBlockAppender />
-						}
 					/>
 				</div>
 			</Fragment>
 		);
-	}
 }
-
-export default compose(
-)(GridItemEdit);
 
 /**
  * Override the default block element to add wrapper props.
@@ -217,8 +433,12 @@ const addCustomClassName = createHigherOrderComponent((BlockListBlock) => {
 		} = props;
 
 		const {
-			gridColumnStart,
-			gridColumnEnd,
+			gridColumnStartDesktop,
+			gridColumnEndDesktop,
+			gridColumnStartTablet,
+			gridColumnEndTablet,
+			gridColumnStartMobile,
+			gridColumnEndMobile,
 			alignItem,
 			justifyItem,
 			stacking,
@@ -226,25 +446,51 @@ const addCustomClassName = createHigherOrderComponent((BlockListBlock) => {
 			gutter,
 			overlapLeft,
 			overlapRight,
+			marginTopDesktop,
+			marginBottomDesktop,
+			marginTopTablet,
+			marginBottomTablet,
+			marginTopMobile,
+			marginBottomMobile,
+			backgroundColor,
 		} = attributes;
 
 		const classNames = classnames(className, {
-			[`grid-column_start__${gridColumnStart}`]: gridColumnStart,
-			[`grid-column_end__${gridColumnEnd}`]: gridColumnEnd,
+			[`col_start_d__${gridColumnStartDesktop}`]: gridColumnStartDesktop,
+			[`col_end_d__${gridColumnEndDesktop}`]: gridColumnEndDesktop,
+			[`col_start_t__${gridColumnStartTablet}`]: gridColumnStartTablet,
+			[`col_end_t__${gridColumnEndTablet}`]: gridColumnEndTablet,
+			[`col_start_m__${gridColumnStartMobile}`]: gridColumnStartMobile,
+			[`col_end_m__${gridColumnEndMobile}`]: gridColumnEndMobile,
 			[`align-self__${alignItem}`]: alignItem,
 			[`justify-self__${justifyItem}`]: justifyItem,
-			[`stack-order__${stackOrder}`]: stackOrder,
 			'no-gutter': ! gutter,
 			'no-stacking': ! stacking,
+			'has-stacking': stacking === true && stackOrder ? stackOrder : undefined,
+			[`stack-order__${stackOrder}`]: stacking === true && stackOrder ? stackOrder : undefined,
 			'overlap-left': overlapLeft,
 			'overlap-right': overlapRight,
+			[`mt_d__${marginTopDesktop}`] : marginTopDesktop ? marginTopDesktop : undefined,
+			[`mt_t__${marginTopTablet}`] : marginTopTablet ? marginTopTablet : undefined,
+			[`mt_m__${marginTopMobile}`] : marginTopMobile ? marginTopMobile : undefined,
+			[`mb_d__${marginBottomDesktop}`] : marginBottomDesktop ? marginBottomDesktop : undefined,
+			[`mb_t__${marginBottomTablet}`] : marginBottomTablet ? marginBottomTablet : undefined,
+			[`mb_m__${marginBottomMobile}`] : marginBottomMobile? marginBottomMobile : undefined,
+			'mt_d__0': marginTopDesktop === 0,
+			'mt_t__0': marginTopTablet === 0,
+			'mt_m__0': marginTopMobile === 0,
+			'mb_d__0': marginBottomDesktop === 0,
+			'mb_t__0': marginBottomTablet === 0,
+			'mb_m__0': marginBottomMobile === 0,
 		});
 
 		return <BlockListBlock {...props} className={classNames} />;
 	};
+
 }, 'addCustomClassName');
 
-addFilter('editor.BlockListBlock',
-	'ainoblocks/modify-spacing-save-settings',
-	addCustomClassName
+wp.hooks.addFilter(
+    'editor.BlockListBlock',
+    'ainoblocks/grid-item',
+    addCustomClassName
 );

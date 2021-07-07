@@ -1,5 +1,6 @@
 {
 	"name": "card",
+	"apiVersion": 2,
 	"attributes": {
 		"align": {
 			"type": "string"
@@ -10,31 +11,45 @@
 		"borderColor": {
 			"type": "string"
 		},
-		"imgRadius": {
-			"type": "string"
-		},
-		"backgroundRadius": {
+		"borderRadius": {
 			"type": "number",
 			"default": 0
 		},
 		"shadowName": {
-			"type": "string"
+			"type": "string",
+			"default": "shadow-none"
 		},
 		"paddingTop": {
 			"type": "number",
-			"default": 3
+			"default": 7
 		},
 		"paddingBottom": {
 			"type": "number",
-			"default": 3
+			"default": 7
 		},
 		"paddingLeft": {
 			"type": "number",
-			"default": 3
+			"default": 7
 		},
 		"paddingRight": {
 			"type": "number",
-			"default": 3
+			"default": 7
+		},
+		"borderTopWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"borderRightWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"borderBottomWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"borderLeftWidth": {
+			"type": "number",
+			"default": 0
 		}
 	}
 }

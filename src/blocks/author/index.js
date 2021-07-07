@@ -30,6 +30,19 @@ const settings = {
 		__('aino blocks', 'ainoblocks'),
 	],
 	attributes,
+	example: {
+		attributes: {
+			imgURL: 'https://wpaino.s3.eu-central-1.amazonaws.com/ellen.jpg',
+			imgID: '4637',
+			name: 'Ellen Bauer',
+			info: 'Frontend Developer',
+			imgSize: 'avatar-m',
+			layout: 'floated-left',
+			imgRadius: '100',
+			nameTextColor: '#111',
+			infoTextColor: '#111',
+		},
+	},
 	edit,
 	save,
 };
